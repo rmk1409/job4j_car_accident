@@ -10,6 +10,7 @@ public class SpringDI {
         StartUI ui = context.getBean(StartUI.class);
         ui.add("Petr Arsentev");
         ui.add("Ivan ivanov");
-        ui.print();
+        StartUI another = context.getBean(StartUI.class);
+        another.print();
     }
 }
