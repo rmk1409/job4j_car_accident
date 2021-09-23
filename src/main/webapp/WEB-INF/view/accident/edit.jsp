@@ -16,8 +16,7 @@
 </head>
 <body>
 <div class="container">
-  <form action="<c:url value='/save'/>" method='POST'>
-    <input type="hidden" value="<c:out value='${accident.id}'/>" name="id">
+  <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
     <table>
       <tr>
         <td>Название:</td>

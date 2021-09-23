@@ -28,14 +28,14 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="entry" items="${accidents}">
+        <c:forEach var="accident" items="${accidents}">
             <tr>
-                <td>${entry.key}</td>
-                <td>${entry.value.name}</td>
-                <td>${entry.value.text}</td>
-                <td>${entry.value.address}</td>
+                <td>${accident.id}</td>
+                <td>${accident.name}</td>
+                <td>${accident.text}</td>
+                <td>${accident.address}</td>
                 <td>
-                    <a href="<c:url value='/edit?id=${entry.key}'/>">Редактировать</a>
+                    <a href="<c:url value='/update?id=${accident.id}'/>">Редактировать</a>
                 </td>
             </tr>
         </c:forEach>
