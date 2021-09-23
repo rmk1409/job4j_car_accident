@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -42,6 +43,16 @@
         <td>Адресс:</td>
         <td><input type='text' name='address' value='${accident.address}'
                    required></td>
+      </tr>
+      <tr>
+        <td>Статьи:</td>
+        <td>
+          <select name="rIds" multiple required>
+            <c:forEach var="rule" items="${rules}">
+              <option value="${rule.id}"
+                      <c:if test="${fn:contains(accident.rules, rule)}">selected</c:if>>${rule.name}</option>
+            </c:forEach>
+          </select>
       </tr>
       <tr>
         <td colspan='2'><input name="submit" type="submit" value="Сохранить"/>
