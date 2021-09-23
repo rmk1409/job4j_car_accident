@@ -19,6 +19,16 @@
   <form action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
     <table>
       <tr>
+        <td>Тип:</td>
+        <td>
+          <select name="type.id" required>
+            <c:forEach var="type" items="${types}">
+              <option value="${type.id}" ${type.id == accident.type.id ? 'selected' : ''}>${type.name}</option>
+            </c:forEach>
+          </select>
+        </td>
+      </tr>
+      <tr>
         <td>Название:</td>
         <td><input type='text' name='name' value='${accident.name}' required>
         </td>

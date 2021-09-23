@@ -24,6 +24,7 @@
             <th>Name</th>
             <th>Text</th>
             <th>Address</th>
+            <th>Type</th>
             <th>Edit</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
                 <td>${accident.name}</td>
                 <td>${accident.text}</td>
                 <td>${accident.address}</td>
+                <td>${accident.type.name}</td>
                 <td>
                     <a href="<c:url value='/update?id=${accident.id}'/>">Редактировать</a>
                 </td>

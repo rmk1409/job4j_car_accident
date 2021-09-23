@@ -18,13 +18,15 @@ public class AccidentControl {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidents.getAccidentTypes());
         return "accident/create";
     }
 
     @GetMapping("/update")
     public String update(@RequestParam int id, Model model) {
-        model.addAttribute("accident", accidents.findById(id));
+        model.addAttribute("accident", accidents.findAccidentById(id));
+        model.addAttribute("types", accidents.getAccidentTypes());
         return "accident/edit";
     }
 
