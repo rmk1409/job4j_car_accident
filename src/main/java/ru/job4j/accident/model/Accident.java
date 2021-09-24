@@ -1,14 +1,20 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+    @ManyToOne
     private AccidentType type;
+    @ManyToMany
     private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
