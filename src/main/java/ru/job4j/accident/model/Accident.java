@@ -11,13 +11,14 @@ public class Accident {
     private AccidentType type;
     private Set<Rule> rules = new HashSet<>();
 
-    public static Accident of(String name, String text, String address, AccidentType type) {
-        Accident accident = new Accident();
-        accident.name = name;
-        accident.text = text;
-        accident.address = address;
-        accident.type = type;
-        return accident;
+    public Accident() {
+    }
+
+    public Accident(String name, String text, String address, AccidentType type) {
+        this.name = name;
+        this.text = text;
+        this.address = address;
+        this.type = type;
     }
 
     public int getId() {

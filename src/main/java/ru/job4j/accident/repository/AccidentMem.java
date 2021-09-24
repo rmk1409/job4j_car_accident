@@ -37,10 +37,10 @@ public class AccidentMem {
         saveOrUpdate(rule2);
         saveOrUpdate(rule3);
 
-        Accident accident1 = Accident.of("name1", "text1", "address1", carToCarType);
-        Accident accident2 = Accident.of("name2", "text2", "address2", carToCarType);
-        Accident accident3 = Accident.of("name3", "text3", "address3", carToBikeType);
-        Accident accident4 = Accident.of("name4", "text4", "address4", carToHumanType);
+        Accident accident1 = new Accident("name1", "text1", "address1", carToCarType);
+        Accident accident2 = new Accident("name2", "text2", "address2", carToCarType);
+        Accident accident3 = new Accident("name3", "text3", "address3", carToBikeType);
+        Accident accident4 = new Accident("name4", "text4", "address4", carToHumanType);
 
         accident1.addRule(rule1);
         accident2.addRule(rule1);
