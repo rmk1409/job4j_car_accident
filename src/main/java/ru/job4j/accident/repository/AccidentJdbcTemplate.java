@@ -36,14 +36,14 @@ public class AccidentJdbcTemplate {
                 accident.setName(rs.getString("acc_name"));
                 accident.setText(rs.getString("text"));
                 accident.setAddress(rs.getString("address"));
-                accident.setType(AccidentType.of(rs.getInt("type_id"), rs.getString("type_name")));
+                accident.setType(new AccidentType(rs.getInt("type_id"), rs.getString("type_name")));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             return accident;
         });
         Accident accident = idToAccident.get(accId);
-        accident.addRule(Rule.of(rs.getInt("r_id"), rs.getString("r_name")));
+        accident.addRule(new Rule(rs.getInt("r_id"), rs.getString("r_name")));
         return accident;
     };
 
@@ -64,10 +64,9 @@ public class AccidentJdbcTemplate {
     public Collection<AccidentType> getAccidentTypes() {
         return jdbc.query("select id, name from accident_type",
                 (rs, row) -> {
-                    AccidentType type = new AccidentType();
-                    type.setId(rs.getInt("id"));
-                    type.setName(rs.getString("name"));
-                    return type;
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    return new AccidentType(id, name);
                 });
     }
 

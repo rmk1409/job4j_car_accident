@@ -21,17 +21,17 @@ public class AccidentMem {
     private final Map<Integer, Rule> rules = new HashMap<>();
 
     {
-        AccidentType carToCarType = AccidentType.of(1, "Две машины");
-        AccidentType carToHumanType = AccidentType.of(2, "Машина и человек");
-        AccidentType carToBikeType = AccidentType.of(3, "Машина и велосипед");
+        AccidentType carToCarType = new AccidentType(1, "Две машины");
+        AccidentType carToHumanType = new AccidentType(2, "Машина и человек");
+        AccidentType carToBikeType = new AccidentType(3, "Машина и велосипед");
 
         saveOrUpdate(carToCarType);
         saveOrUpdate(carToHumanType);
         saveOrUpdate(carToBikeType);
 
-        Rule rule1 = Rule.of(1, "Статья. 1");
-        Rule rule2 = Rule.of(2, "Статья. 2");
-        Rule rule3 = Rule.of(3, "Статья. 3");
+        Rule rule1 = new Rule(1, "Статья. 1");
+        Rule rule2 = new Rule(2, "Статья. 2");
+        Rule rule3 = new Rule(3, "Статья. 3");
 
         saveOrUpdate(rule1);
         saveOrUpdate(rule2);
