@@ -43,7 +43,7 @@ public class AccidentService {
     }
 
     public Accident findAccidentById(int id) {
-        return accidentRepository.findById(id).get();
+        return accidentRepository.findById(id);
     }
 
     public void saveOrUpdate(Accident accident, String[] rIds) {
