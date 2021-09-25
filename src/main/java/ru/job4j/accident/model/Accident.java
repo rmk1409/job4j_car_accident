@@ -14,7 +14,7 @@ public class Accident {
     private String address;
     @ManyToOne
     private AccidentType type;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
