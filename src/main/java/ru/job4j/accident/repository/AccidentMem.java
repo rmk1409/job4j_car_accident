@@ -20,7 +20,7 @@ public class AccidentMem {
     private final Map<Integer, AccidentType> types = new HashMap<>();
     private final Map<Integer, Rule> rules = new HashMap<>();
 
-    {
+    public AccidentMem() {
         AccidentType carToCarType = new AccidentType(1, "Две машины");
         AccidentType carToHumanType = new AccidentType(2, "Машина и человек");
         AccidentType carToBikeType = new AccidentType(3, "Машина и велосипед");
