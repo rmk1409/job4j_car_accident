@@ -2,23 +2,33 @@ DROP TABLE IF EXISTS accident_rule;
 DROP TABLE IF EXISTS accident;
 DROP TABLE IF EXISTS accident_type;
 DROP TABLE IF EXISTS rule;
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS authorities;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE authorities
 (
-    username VARCHAR(50)  NOT NULL,
-    password VARCHAR(100) NOT NULL,
-    enabled  boolean default true,
-    PRIMARY KEY (username)
+    id        serial primary key,
+    authority VARCHAR(50) NOT NULL unique
 );
 
-CREATE TABLE IF NOT EXISTS authorities
+CREATE TABLE users
 (
-    username  VARCHAR(50) NOT NULL,
-    authority VARCHAR(50) NOT NULL,
-    FOREIGN KEY (username) REFERENCES users (username)
+    id           serial primary key,
+    username     VARCHAR(50)  NOT NULL unique,
+    password     VARCHAR(100) NOT NULL,
+    enabled      boolean default true,
+    authority_id int          not null references authorities (id)
 );
+
+insert into authorities (authority)
+values ('ROLE_USER');
+insert into authorities (authority)
+values ('ROLE_ADMIN');
+
+insert into users (username, enabled, password, authority_id)
+values ('root', true,
+        '$2a$10$nBChZiAYNXqu3OQVGAXMpeeOUL07NdCM0d3b3ee6A.ZyjsNrQdh2W',
+        (select id from authorities where authority = 'ROLE_ADMIN'));
 
 CREATE TABLE IF NOT EXISTS rule
 (
