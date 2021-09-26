@@ -7,9 +7,9 @@ import ru.job4j.accident.model.Accident;
 import java.util.Collection;
 
 public interface AccidentRepository extends CrudRepository<Accident, Integer> {
-    @Query("select distinct a from Accident a join fetch a.rules")
+    @Query("select distinct a from Accident a join fetch a.rules join fetch a.type ")
     Collection<Accident> findAll();
 
-    @Query("select distinct a from Accident a join fetch a.rules where a.id = ?1")
+    @Query("select distinct a from Accident a join fetch a.rules join fetch a.type where a.id = ?1")
     Accident findById(int id);
 }

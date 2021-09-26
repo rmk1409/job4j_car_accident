@@ -12,7 +12,7 @@ public class Accident {
     private String name;
     private String text;
     private String address;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private AccidentType type;
     @ManyToMany
     private Set<Rule> rules = new HashSet<>();
