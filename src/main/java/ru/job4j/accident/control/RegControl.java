@@ -1,5 +1,7 @@
 package ru.job4j.accident.control;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,11 @@ import ru.job4j.accident.model.User;
 import ru.job4j.accident.repository.AuthorityRepository;
 import ru.job4j.accident.repository.UserRepository;
 
+import java.util.Objects;
+
 @Controller
 public class RegControl {
+    private final Logger logger = LoggerFactory.getLogger(RegControl.class);
     private final PasswordEncoder encoder;
     private final UserRepository users;
     private final AuthorityRepository authorities;
@@ -29,9 +34,13 @@ public class RegControl {
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthority(authorities.findByAuthority("ROLE_USER"));
+        User saved = null;
         try {
-            users.save(user);
+            saved = users.save(user);
         } catch (DataIntegrityViolationException e) {
+            logger.error("Exception is happened:", e);
+        }
+        if (Objects.isNull(saved)) {
             model.addAttribute("errorMessage", "Try to use another username");
             return "reg";
         }
